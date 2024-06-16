@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    //kotlin("kapt")
 }
 
 android {
@@ -66,4 +67,30 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Navigation
+    implementation(libs.androidx.navigation.compose.v277)
+
+
+    // Room dependency
+//    implementation(libs.androidx.room.runtime)
+//    kapt(libs.androidx.room.compiler)
+//
+//    // optional - Kotlin Extensions and Coroutines support for Room
+//    implementation(libs.androidx.room.ktx)
+//
+//    // optional - RxJava2 support for Room
+//    implementation(libs.androidx.room.rxjava2)
+//
+//    // optional - RxJava3 support for Room
+//    implementation(libs.androidx.room.rxjava3)
+//
+//    // optional - Guava support for Room, including Optional and ListenableFuture
+//    implementation(libs.androidx.room.guava)
+//
+//    // optional - Test helpers
+//    testImplementation(libs.androidx.room.testing)
+//
+//    // optional - Paging 3 Integration
+//    implementation(libs.androidx.room.paging)
 }
