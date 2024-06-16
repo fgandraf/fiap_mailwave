@@ -3,7 +3,10 @@ package br.com.mailwave.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+<<<<<<< HEAD
 import androidx.compose.foundation.layout.Box
+=======
+>>>>>>> 86daca25073fc7067d0bab39a22f3f87d86958ab
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -28,18 +31,38 @@ import br.com.mailwave.R
 import br.com.mailwave.ui.theme.Inter
 
 @Composable
+<<<<<<< HEAD
 fun Header(){
+=======
+fun Header(
+    settingsClick : () -> Unit,
+    searchClick: () -> Unit,
+    menuClick: () -> Unit
+){
+>>>>>>> 86daca25073fc7067d0bab39a22f3f87d86958ab
 
     Column(modifier = Modifier
         .fillMaxWidth()
         .height(100.dp)
     ){
 
+<<<<<<< HEAD
         Row(modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically){
+=======
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+            .clickable { settingsClick() },
+
+        ){
+>>>>>>> 86daca25073fc7067d0bab39a22f3f87d86958ab
 
             Row(verticalAlignment = Alignment.CenterVertically) {
 
@@ -70,7 +93,11 @@ fun Header(){
                     contentDescription = "Search Icon",
                     modifier = Modifier
                         .size(32.dp)
+<<<<<<< HEAD
                         .clickable {}
+=======
+                        .clickable { searchClick() }
+>>>>>>> 86daca25073fc7067d0bab39a22f3f87d86958ab
                 )
 
                 Spacer(modifier = Modifier.width(24.dp))
@@ -80,7 +107,11 @@ fun Header(){
                     contentDescription = "Menu Icon",
                     modifier = Modifier
                         .size(32.dp)
+<<<<<<< HEAD
                         .clickable {}
+=======
+                        .clickable { menuClick() }
+>>>>>>> 86daca25073fc7067d0bab39a22f3f87d86958ab
                 )
 
             }
