@@ -42,11 +42,11 @@ fun Header(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-            .clickable { settingsClick() },
+                .fillMaxWidth()
+                .padding(16.dp)
+                .clickable { settingsClick() },
 
-        ){
+            ){
 
             Row(verticalAlignment = Alignment.CenterVertically) {
 

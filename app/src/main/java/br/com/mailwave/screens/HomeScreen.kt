@@ -1,6 +1,6 @@
 package br.com.mailwave.screens
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -16,6 +16,7 @@ import androidx.navigation.NavController
 import br.com.mailwave.components.Header
 import br.com.mailwave.screens._home.FoldersPanel
 import br.com.mailwave.screens._home.SettingsPanel
+import br.com.mailwave.ui.theme.ChooseOptions
 import br.com.mailwave.ui.theme.MailWaveTheme
 
 @Composable
@@ -24,8 +25,7 @@ fun HomeScreen(navController: NavController){
     var menuDockIsVisible by remember { mutableStateOf(false) }
     var settingsDockIsVisible by remember { mutableStateOf(false) }
 
-
-    Box(modifier = Modifier.fillMaxSize()){
+    Column(modifier = Modifier.fillMaxSize()){
 
         Header(
             settingsClick = { settingsDockIsVisible = true },
@@ -33,9 +33,7 @@ fun HomeScreen(navController: NavController){
             menuClick = { menuDockIsVisible = true }
         )
 
-
-
-
+        ChooseOptions(choseOption = "all")
 
         // Body
 //        Column(modifier = Modifier
