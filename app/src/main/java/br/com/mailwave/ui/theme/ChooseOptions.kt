@@ -21,7 +21,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,23 +28,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun ChooseOptions(choseOption: String){
 
-    var allButtonColor by remember {
-        mutableStateOf(Color(0x00000000))
-    }
-
-    val inboxButtonColor by remember {
-        mutableStateOf(Color(0x00000000))
-    }
-
-    val sentButtonColor by remember {
-        mutableStateOf(Color(0x00000000))
-    }
-
-    val unreadButtonColor by remember {
-        mutableStateOf(Color(0x00000000))
-    }
-
-    Box(modifier = Modifier.fillMaxWidth()){
+    Row(modifier = Modifier.fillMaxWidth()){
 
         Row(
             modifier = Modifier
@@ -59,7 +42,7 @@ fun ChooseOptions(choseOption: String){
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            Button(onClick = { allButtonColor. }, colors = ButtonDefaults.buttonColors(contentColor = allButtonColor)) {
+            Button(onClick = {}, colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF121212))) {
                 Text(
                     text = "All",
                     fontSize = 16.sp,
@@ -71,33 +54,39 @@ fun ChooseOptions(choseOption: String){
 
             VerticalDivider(modifier = Modifier.height(25.dp), thickness = 1.dp, color = Color(0XFF292929))
 
-            Text(
-                text = "Inbox",
-                fontSize = 16.sp,
-                fontFamily = Inter,
-                fontWeight = FontWeight.Medium,
-                color = Color.White
-            )
+            Button(onClick = { /*TODO*/ }, colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF121212))) {
+                Text(
+                    text = "Inbox",
+                    fontSize = 16.sp,
+                    fontFamily = Inter,
+                    fontWeight = FontWeight.Medium,
+                    color = Color.White
+                )
+            }
 
             VerticalDivider(modifier = Modifier.height(25.dp), thickness = 1.dp, color = Color(0XFF292929))
 
-            Text(
-                text = "Sent",
-                fontSize = 16.sp,
-                fontFamily = Inter,
-                fontWeight = FontWeight.Medium,
-                color = Color.White
-            )
+            Button(onClick = { /*TODO*/ }, colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF121212))) {
+                Text(
+                    text = "Sent",
+                    fontSize = 16.sp,
+                    fontFamily = Inter,
+                    fontWeight = FontWeight.Medium,
+                    color = Color.White
+                )
+            }
 
             VerticalDivider(modifier = Modifier.height(25.dp), thickness = 1.dp, color = Color(0XFF292929))
 
-            Text(
-                text = "Unread",
-                fontSize = 16.sp,
-                fontFamily = Inter,
-                fontWeight = FontWeight.Medium,
-                color = Color.White
-            )
+            Button(onClick = { /*TODO*/ }, colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF121212))) {
+                Text(
+                    text = "Unread",
+                    fontSize = 16.sp,
+                    fontFamily = Inter,
+                    fontWeight = FontWeight.Medium,
+                    color = Color.White
+                )
+            }
 
         }
 
