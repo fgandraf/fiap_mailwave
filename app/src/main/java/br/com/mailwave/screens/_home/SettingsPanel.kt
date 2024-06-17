@@ -4,7 +4,6 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,6 +11,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -32,18 +35,18 @@ fun SettingsPanel(dockIsVisible: Boolean, navController: NavController, onClose:
         exit = slideOutHorizontally()
     ) {
 
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color(0xFF1C1C1E)),
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
+        var pauseNotificationOn by remember { mutableStateOf(false) }
+        var faceIdOn by remember { mutableStateOf(true) }
+
+
+        Column(modifier = Modifier.fillMaxSize()) {
 
             PanelHeader(title = "Configurações") { onClose() }
 
             Column(modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFF202022))) {
+                .background(Color(0xFF202022)),
+            ) {
 
                 Card(modifier = Modifier
                     .fillMaxWidth()
@@ -62,8 +65,8 @@ fun SettingsPanel(dockIsVisible: Boolean, navController: NavController, onClose:
                     colors = CardDefaults.cardColors(containerColor = Color.Black),
                 ) {
 
-                    MenuItemSwitch(label = "Pausar Notificações", initialState = false, divider = true) { }
-                    MenuItemSwitch(label = "Face ID / Touch ID", initialState = true, divider = true) { }
+                    MenuItemSwitch(label = "Pausar Notificações", switchState = pauseNotificationOn, divider = true) { pauseNotificationOn = !pauseNotificationOn }
+                    MenuItemSwitch(label = "Face ID / Touch ID", switchState = faceIdOn, divider = true) { faceIdOn = !faceIdOn }
                     MenuItemArrow(label = "Configurar Notificações", divider = false) { }
 
                 }

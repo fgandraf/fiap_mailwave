@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun MenuItemSwitch(label: String, initialState: Boolean, divider: Boolean, onCheck: () -> Unit){
+fun MenuItemSwitch(label: String, switchState: Boolean, divider: Boolean, onCheck: () -> Unit){
     Column(modifier = Modifier
         .fillMaxWidth()
         .height(60.dp)
@@ -58,7 +58,7 @@ fun MenuItemSwitch(label: String, initialState: Boolean, divider: Boolean, onChe
                         uncheckedBorderColor = Color.White,
                         checkedBorderColor = Color(0xFF4CD964)
                     ),
-                    checked = initialState,
+                    checked = switchState,
                     onCheckedChange = { onCheck() }
                 )
             }
