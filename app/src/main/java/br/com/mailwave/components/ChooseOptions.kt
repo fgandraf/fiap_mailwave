@@ -1,8 +1,7 @@
-package br.com.mailwave.ui.theme
+package br.com.mailwave.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -10,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
@@ -24,9 +24,26 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.mailwave.ui.theme.Inter
 
 @Composable
 fun ChooseOptions(choseOption: String){
+
+    var choseOption by remember {
+        mutableStateOf(choseOption)
+    }
+
+    var allColor = Color(0xFF121212);
+    var inboxColor = Color(0xFF121212);
+    var sentColor = Color(0xFF121212);
+    var unreadColor = Color(0xFF121212);
+
+    when(choseOption){
+        "all" -> allColor = MaterialTheme.colorScheme.inversePrimary
+        "inbox" -> inboxColor = MaterialTheme.colorScheme.inversePrimary
+        "sent" -> sentColor = MaterialTheme.colorScheme.inversePrimary
+        "unread" -> unreadColor = MaterialTheme.colorScheme.inversePrimary
+    }
 
     Row(modifier = Modifier.fillMaxWidth()){
 
@@ -42,7 +59,7 @@ fun ChooseOptions(choseOption: String){
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            Button(onClick = {}, colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF121212))) {
+            Button(onClick = {choseOption = "all"}, colors = ButtonDefaults.buttonColors(containerColor = allColor), shape = RoundedCornerShape(8.dp)) {
                 Text(
                     text = "All",
                     fontSize = 16.sp,
@@ -54,7 +71,7 @@ fun ChooseOptions(choseOption: String){
 
             VerticalDivider(modifier = Modifier.height(25.dp), thickness = 1.dp, color = Color(0XFF292929))
 
-            Button(onClick = { /*TODO*/ }, colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF121212))) {
+            Button(onClick = {choseOption = "inbox"}, colors = ButtonDefaults.buttonColors(containerColor = inboxColor), shape = RoundedCornerShape(8.dp)) {
                 Text(
                     text = "Inbox",
                     fontSize = 16.sp,
@@ -66,7 +83,7 @@ fun ChooseOptions(choseOption: String){
 
             VerticalDivider(modifier = Modifier.height(25.dp), thickness = 1.dp, color = Color(0XFF292929))
 
-            Button(onClick = { /*TODO*/ }, colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF121212))) {
+            Button(onClick = {choseOption = "sent"}, colors = ButtonDefaults.buttonColors(containerColor = sentColor), shape = RoundedCornerShape(8.dp)) {
                 Text(
                     text = "Sent",
                     fontSize = 16.sp,
@@ -78,7 +95,7 @@ fun ChooseOptions(choseOption: String){
 
             VerticalDivider(modifier = Modifier.height(25.dp), thickness = 1.dp, color = Color(0XFF292929))
 
-            Button(onClick = { /*TODO*/ }, colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF121212))) {
+            Button(onClick = {choseOption = "unread"}, colors = ButtonDefaults.buttonColors(containerColor = unreadColor), shape = RoundedCornerShape(8.dp)) {
                 Text(
                     text = "Unread",
                     fontSize = 16.sp,
