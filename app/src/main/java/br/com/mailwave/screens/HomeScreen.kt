@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -16,12 +17,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
-import br.com.mailwave.R
 import br.com.mailwave.components.EmailSingle
 import br.com.mailwave.components.Header
+import br.com.mailwave.repository.EmailRepository
 import br.com.mailwave.screens._home.FoldersPanel
 import br.com.mailwave.screens._home.SettingsPanel
-import br.com.mailwave.ui.theme.ChooseOptions
+import br.com.mailwave.components.ChooseOptions
 import br.com.mailwave.ui.theme.MailWaveTheme
 
 @Composable
@@ -43,9 +44,9 @@ fun HomeScreen(navController: NavController){
 
             LazyColumn(modifier = Modifier.fillMaxWidth()) {
 
-                items(20){
+                items(EmailRepository.getAllEmails()){
 
-                    EmailSingle(imageId = R.drawable.profile_pic, emailSender = "Mike", emailBody = "Hey Bro, this is the first email sent using this app!", read = false)
+                    EmailSingle(imageId = it.senderImage, emailSender = it.sender, emailBody = it.body, read = it.read)
 
                 }
 

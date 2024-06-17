@@ -31,7 +31,7 @@ fun EmailSingle(imageId: Int, emailSender: String, emailBody: String, read: Bool
     var formattedEmailBody = "";
     var emailTextColor = if(read) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.primary;
 
-    if(emailBody.length > 44) formattedEmailBody = emailBody.substring(0, 44) + "..."
+    if(emailBody.length > 42) formattedEmailBody = emailBody.substring(0, 42) + "..."
 
     Button(onClick = {}, modifier = Modifier
         .fillMaxWidth()
