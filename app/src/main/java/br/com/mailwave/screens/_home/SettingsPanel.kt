@@ -4,32 +4,24 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import br.com.mailwave.components.MenuDoubleItemArrow
+import br.com.mailwave.components.MenuItemArrow
+import br.com.mailwave.components.MenuItemSwitch
+import br.com.mailwave.components.PanelHeader
 import br.com.mailwave.ui.theme.MailWaveTheme
 
 @Composable
@@ -43,100 +35,65 @@ fun SettingsPanel(dockIsVisible: Boolean, navController: NavController, onClose:
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .height(90.dp)
-                .background(MaterialTheme.colorScheme.background),
+                .background(Color(0xFF1C1C1E)),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
 
-            // Header
-            Column(
-                modifier = Modifier
+            PanelHeader(title = "Configurações") { onClose() }
+
+            Column(modifier = Modifier
+                .fillMaxSize()
+                .background(Color(0xFF202022))) {
+
+                Card(modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 25.dp)
-                    .padding(horizontal = 10.dp)
-            ) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                )
-                {
-                    Row(
-                        modifier = Modifier
-                            .align(Alignment.CenterEnd)
-                            .size(50.dp)
-                            .clickable { onClose() },
-                        horizontalArrangement = Arrangement.Center,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            Icons.Default.Close,
-                            contentDescription = "Back",
-                            tint = MaterialTheme.colorScheme.primary,
-                        )
-                    }
+                    .padding(start = 20.dp, top = 40.dp, end = 20.dp, bottom = 30.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color.Black),
+                ) {
+
+                    MenuDoubleItemArrow(firstLine = "Contas", secondLine = "2 contas conectadas") { }
                 }
 
-                HorizontalDivider(color = Color.DarkGray, thickness = 1.dp, modifier = Modifier.padding(top = 10.dp))
+
+
+                Card(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp, end = 20.dp, bottom = 30.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color.Black),
+                ) {
+
+                    MenuItemSwitch(label = "Pausar Notificações", initialState = false, divider = true) { }
+                    MenuItemSwitch(label = "Face ID / Touch ID", initialState = true, divider = true) { }
+                    MenuItemArrow(label = "Configurar Notificações", divider = false) { }
+
+                }
+
+
+
+                Card(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp, end = 20.dp, bottom = 30.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color.Black),
+                ) {
+
+                    MenuItemArrow(label = "Assinatura", divider = false) { }
+
+                }
+
+
+
+                Card(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp, end = 20.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color.Black),
+                ) {
+
+                    MenuItemArrow(label = "Sobre", divider = true) { }
+                    MenuItemArrow(label = "Termos de Privacidade", divider = true) { }
+                    MenuItemArrow(label = "Sair", divider = false) { }
+
+                }
             }
-
-            // Body
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(MaterialTheme.colorScheme.background)
-            ) {
-                Spacer(modifier = Modifier.height(30.dp))
-                
-                Card(modifier = Modifier
-                    .fillMaxWidth()
-                    .height(60.dp)
-                    .padding(horizontal = 20.dp),
-                    colors = CardColors(containerColor = MaterialTheme.colorScheme.surface, contentColor = Color.White, disabledContentColor = Color.Yellow, disabledContainerColor = Color.Red)
-                ) { }
-
-                Spacer(modifier = Modifier.height(20.dp))
-
-                Card(modifier = Modifier
-                    .fillMaxWidth()
-                    .height(150.dp)
-                    .padding(horizontal = 20.dp),
-                    colors = CardColors(containerColor = MaterialTheme.colorScheme.surface, contentColor = Color.White, disabledContentColor = Color.Yellow, disabledContainerColor = Color.Red)
-                ) { }
-
-                Spacer(modifier = Modifier.height(20.dp))
-
-                Card(modifier = Modifier
-                    .fillMaxWidth()
-                    .height(60.dp)
-                    .padding(horizontal = 20.dp),
-                    colors = CardColors(containerColor = MaterialTheme.colorScheme.surface, contentColor = Color.White, disabledContentColor = Color.Yellow, disabledContainerColor = Color.Red)
-                ) { }
-
-                Spacer(modifier = Modifier.height(20.dp))
-
-                Card(modifier = Modifier
-                    .fillMaxWidth()
-                    .height(220.dp)
-                    .padding(horizontal = 20.dp),
-                    colors = CardColors(containerColor = MaterialTheme.colorScheme.surface, contentColor = Color.White, disabledContentColor = Color.Yellow, disabledContainerColor = Color.Red)
-                ) { }
-
-
-
-
-
-
-
-            }
-
-
-
-
-
-
-
-
-
 
 
         }
@@ -155,5 +112,4 @@ fun SettingsPanelPreview(){
             onClose = {  }
         )
     }
-
 }

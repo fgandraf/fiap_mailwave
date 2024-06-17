@@ -31,7 +31,6 @@ fun HomeScreen(navController: NavController){
     var settingsDockIsVisible by remember { mutableStateOf(false) }
 
     Box(modifier = Modifier.fillMaxSize()){
-
         Column {
 
             Header(
@@ -41,7 +40,7 @@ fun HomeScreen(navController: NavController){
             )
 
             ChooseOptions(choseOption = "all")
-            
+
             LazyColumn(modifier = Modifier.fillMaxWidth()) {
 
                 items(20){
@@ -53,7 +52,9 @@ fun HomeScreen(navController: NavController){
             }
 
         }
-        // Body
+
+
+    // Body
 //        Column(modifier = Modifier
 //            .fillMaxWidth()
 //            .fillMaxHeight()
@@ -78,10 +79,11 @@ fun HomeScreen(navController: NavController){
 //        }
 
 
-        FoldersPanel(menuDockIsVisible, navController) { menuDockIsVisible = false;}
-        SettingsPanel(settingsDockIsVisible, navController) { settingsDockIsVisible = false;}
+
 
     }
+    FoldersPanel(menuDockIsVisible, navController) { menuDockIsVisible = false;}
+    SettingsPanel(settingsDockIsVisible, navController) { settingsDockIsVisible = false;}
 }
 
 
