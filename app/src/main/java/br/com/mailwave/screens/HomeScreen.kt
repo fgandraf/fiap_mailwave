@@ -17,12 +17,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import br.com.mailwave.components.ChooseOptions
 import br.com.mailwave.components.EmailSingle
 import br.com.mailwave.components.Header
 import br.com.mailwave.repository.EmailRepository
 import br.com.mailwave.screens._home.FoldersPanel
 import br.com.mailwave.screens._home.SettingsPanel
-import br.com.mailwave.components.ChooseOptions
 import br.com.mailwave.ui.theme.MailWaveTheme
 
 @Composable
