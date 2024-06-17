@@ -1,7 +1,10 @@
 package br.com.mailwave.screens
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -13,6 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import br.com.mailwave.R
+import br.com.mailwave.components.EmailSingle
 import br.com.mailwave.components.Header
 import br.com.mailwave.screens._home.FoldersPanel
 import br.com.mailwave.screens._home.SettingsPanel
@@ -25,16 +30,29 @@ fun HomeScreen(navController: NavController){
     var menuDockIsVisible by remember { mutableStateOf(false) }
     var settingsDockIsVisible by remember { mutableStateOf(false) }
 
-    Column(modifier = Modifier.fillMaxSize()){
+    Box(modifier = Modifier.fillMaxSize()){
 
-        Header(
-            settingsClick = { settingsDockIsVisible = true },
-            searchClick = { },
-            menuClick = { menuDockIsVisible = true }
-        )
+        Column {
 
-        ChooseOptions(choseOption = "all")
+            Header(
+                settingsClick = { settingsDockIsVisible = true },
+                searchClick = { },
+                menuClick = { menuDockIsVisible = true }
+            )
 
+            ChooseOptions(choseOption = "all")
+            
+            LazyColumn(modifier = Modifier.fillMaxWidth()) {
+
+                items(20){
+
+                    EmailSingle(imageId = R.drawable.profile_pic, emailSender = "Mike", emailBody = "Hey Bro, this is the first email sent using this app!", read = false)
+
+                }
+
+            }
+
+        }
         // Body
 //        Column(modifier = Modifier
 //            .fillMaxWidth()
