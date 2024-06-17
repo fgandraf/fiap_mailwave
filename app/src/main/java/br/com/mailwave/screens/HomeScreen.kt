@@ -53,33 +53,9 @@ fun HomeScreen(navController: NavController){
             }
 
         }
-
-
-    // Body
-//        Column(modifier = Modifier
-//            .fillMaxWidth()
-//            .fillMaxHeight()
-//            .background(Color.Red)
-//        ) {
-//
-//            Button(shape = RectangleShape,
-//                onClick = {
-//                    navController.navigate("message/create")
-//                }
-//            ) {
-//                Text(text = "Create Message")
-//            }
-//
-//            Button(shape = RectangleShape,
-//                onClick = {
-//                    navController.navigate("message/read")
-//                }
-//            ) {
-//                Text(text = "Read Message")
-//            }
-//        }
-
-
+        
+//       navController.navigate("message/create")
+//       navController.navigate("message/read")
 
 
     }
