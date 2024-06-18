@@ -11,7 +11,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.com.mailwave.screens.HomeScreen
-import br.com.mailwave.screens.MessageScreen
 import br.com.mailwave.screens.SplashScreen
 import br.com.mailwave.ui.theme.MailWaveTheme
 
@@ -33,8 +32,6 @@ class MainActivity : ComponentActivity() {
                     ) {
                         composable(route = "splash") { SplashScreen(navController = navController) }
                         composable(route = "home") { HomeScreen(navController = navController) }
-                        composable(route = "message/create") { MessageScreen(navController = navController) }
-                        composable(route = "message/read") { MessageScreen(navController = navController) }
                     }
 
                 }

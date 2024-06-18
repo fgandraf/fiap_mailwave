@@ -31,7 +31,7 @@ fun PanelHeader(title: String, onClose: () -> Unit){
         horizontalArrangement = Arrangement.Start,
         modifier = Modifier
             .fillMaxWidth()
-            .height(100.dp)
+            .height(80.dp)
             .background(Color(0xFF282B31))
     ) {
 
