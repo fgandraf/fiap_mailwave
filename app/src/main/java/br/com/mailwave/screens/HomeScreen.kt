@@ -20,6 +20,8 @@ import androidx.navigation.NavController
 import br.com.mailwave.components.ChooseOptions
 import br.com.mailwave.components.EmailSingle
 import br.com.mailwave.components.Header
+import br.com.mailwave.integration.RetrofitInstance
+import br.com.mailwave.models.Email
 import br.com.mailwave.repository.AppRepository
 import br.com.mailwave.screens._home.FoldersPanel
 import br.com.mailwave.screens._home.SettingsPanel
@@ -33,6 +35,7 @@ fun HomeScreen(navController: NavController){
 
     val context = LocalContext.current
     val appRepository = AppRepository(context);
+    var messageApi = RetrofitInstance.messageApi
 
     Box(modifier = Modifier.fillMaxSize()){
         Column {
@@ -46,6 +49,18 @@ fun HomeScreen(navController: NavController){
             ChooseOptions(choseOption = "all")
 
             LazyColumn(modifier = Modifier.fillMaxWidth()) {
+
+                items(messageApi.getMessages()) {
+                    var newEmail = Email(
+                        senderImage = 0,
+                        sender = it.sender,
+                        body = "corpo mensagem ***",
+                        folder = "",
+                        tag = "",
+                        read = it.isRead
+                    )
+                    appRepository.insertEmail(newEmail)
+                }
 
                 items(appRepository.getAllEmails()){
 

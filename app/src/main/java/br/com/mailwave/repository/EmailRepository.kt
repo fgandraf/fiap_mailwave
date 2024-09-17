@@ -5,7 +5,6 @@ import br.com.mailwave.db.AppDB
 import br.com.mailwave.db.dao.AllDAO
 import br.com.mailwave.models.Email
 import br.com.mailwave.models.Folder
-import kotlinx.coroutines.flow.Flow
 
 class AppRepository(context: Context) {
 
