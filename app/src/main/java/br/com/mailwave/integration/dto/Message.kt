@@ -1,4 +1,4 @@
-package br.com.mailwave.integration
+package br.com.mailwave.integration.dto
 
 import java.time.LocalDateTime
 
@@ -9,5 +9,7 @@ data class Message(
     val isRead: Boolean,
     val receivedAt: LocalDateTime,
     val accountId: Long,
-    val folderId: Long
+    val folder: String,
+    val tag: String,
+    val body: String
 )

@@ -42,4 +42,6 @@ interface AllDAO {
     @Query("SELECT * FROM folder ORDER BY name ASC")
     fun getAllFolders(): List<Folder>
 
+
+
 }

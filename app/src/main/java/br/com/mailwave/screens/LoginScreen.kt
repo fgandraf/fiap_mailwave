@@ -1,5 +1,7 @@
 package br.com.mailwave.screens
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -26,6 +28,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,6 +36,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.mailwave.R
+import br.com.mailwave.integration.RetrofitInstance
+import br.com.mailwave.integration.UserLoginMockTest
+import br.com.mailwave.integration.dto.UserLoginRequest
 import br.com.mailwave.ui.theme.Inter
 
 @Preview
@@ -41,6 +47,8 @@ fun LoginScreen() {
 
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val userApi = RetrofitInstance.userApi
+    val context = LocalContext.current
 
     // Main content
     Column(
@@ -51,7 +59,7 @@ fun LoginScreen() {
         verticalArrangement = Arrangement.Center
     ) {
 
-        Image(painter = painterResource(R.drawable.logo_transparent), contentDescription = "Logo da aplicação")
+        //Image(painter = painterResource(R.drawable.logo_transparent), contentDescription = "Logo da aplicação")
 
         Spacer(modifier = Modifier.height(24.dp))
 
@@ -91,7 +99,16 @@ fun LoginScreen() {
         Spacer(modifier = Modifier.height(24.dp))
 
         Button(
-            onClick = { /* Implementar */ },
+            onClick = {
+                var userLoginResponse = userApi.login(
+                    UserLoginRequest(email, password)
+                ).body()!!
+
+                val sharedPreferences: SharedPreferences = context.getSharedPreferences("mailWave", Context.MODE_PRIVATE)
+                val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                editor.putString("token", userLoginResponse.token)
+                editor.apply()
+            },
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF38393d)),
             modifier = Modifier.fillMaxWidth(),
         ) {

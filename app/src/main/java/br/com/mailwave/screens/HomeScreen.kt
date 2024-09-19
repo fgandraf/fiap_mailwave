@@ -1,5 +1,7 @@
 package br.com.mailwave.screens
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,6 +23,8 @@ import br.com.mailwave.components.ChooseOptions
 import br.com.mailwave.components.EmailSingle
 import br.com.mailwave.components.Header
 import br.com.mailwave.integration.RetrofitInstance
+import br.com.mailwave.integration.UserLoginMockTest
+import br.com.mailwave.integration.dto.UserLoginRequest
 import br.com.mailwave.models.Email
 import br.com.mailwave.repository.AppRepository
 import br.com.mailwave.screens._home.FoldersPanel
@@ -35,6 +39,7 @@ fun HomeScreen(navController: NavController){
 
     val context = LocalContext.current
     val appRepository = AppRepository(context);
+
     var messageApi = RetrofitInstance.messageApi
 
     Box(modifier = Modifier.fillMaxSize()){
@@ -50,13 +55,16 @@ fun HomeScreen(navController: NavController){
 
             LazyColumn(modifier = Modifier.fillMaxWidth()) {
 
-                items(messageApi.getMessages()) {
+                val sharedPreferences: SharedPreferences = context.getSharedPreferences("mailWave", Context.MODE_PRIVATE)
+                val token: String = sharedPreferences.getString("token", "")!!
+
+                items(messageApi.getUnreadMessages(UserLoginMockTest.userId, token).body()!!) {
                     var newEmail = Email(
                         senderImage = 0,
                         sender = it.sender,
-                        body = "corpo mensagem ***",
-                        folder = "",
-                        tag = "",
+                        body = it.body,
+                        folder = it.folder,
+                        tag = it.tag,
                         read = it.isRead
                     )
                     appRepository.insertEmail(newEmail)
@@ -79,6 +87,10 @@ fun HomeScreen(navController: NavController){
     }
     FoldersPanel(menuDockIsVisible, navController) { menuDockIsVisible = false;}
     SettingsPanel(settingsDockIsVisible, navController) { settingsDockIsVisible = false;}
+}
+
+fun syncMessagesApi() {
+
 }
 
 
